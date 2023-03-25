@@ -1,0 +1,31 @@
+# plays 1 from a random album out of the ones listed
+play 1 from album(choose("reputation", "lover", "1989 deluxe"))
+
+# plays two 2018-2020 song from the pres playlist
+play 2 from playlist("pres") filtered by (year=span(2018,2020))
+
+# plays a song from the first four from my current obsessions playlist
+play 1 from playlist("songs i'm currently obsessed with")[:4]
+
+# plays a song from the top thirteen taylor playlist
+play 1 from playlist("top thirteen taylor")
+
+# sets a to a random value out of 1 / 2 and plays that many songs from one of these albums (that's 2-4 minutes long)
+var a = randint(1, 2)
+play a from album(choose("future nostalgia", "mercurial world")) filtered by (duration=span(120, 240))
+
+# if a was set to 2, play a random carly rae jepsen song
+if a == 2
+  play 1 from choose(artist("carly rae jepsen").albums)
+
+# otherwise if a was 1, play a fairly popular 3-3.5 minute song from the NYE party playlist
+else
+  play 1 from playlist("nye party playlist") filtered by (duration=span(180, 210), popularity=span(70, 90))
+fi
+
+# 99% chance we end here
+if rand() < 0.99
+  quit
+fi
+
+play 1 from track("never gonna give you up")
